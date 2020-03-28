@@ -25,44 +25,7 @@ torch.cuda.manual_seed(1314)
 
 def dataloader_diao():
 
-    a_path = '/home/dsh/Data/NPC/train/0/'
-    b_path = '/home/dsh/Data/NPC/train/1/'
-    c_path = '/home/dsh/Data/NPC/train/2/'
-    a_file = os.listdir(a_path)
-    b_file = os.listdir(b_path)
-    c_file = os.listdir(c_path)
-
-    all_train_file_name, all_train_file_label = [], []
-    all_test_file_name, all_test_file_label = [], []
-
-    for i in range(0, len(a_file)):
-        all_train_file_name.append(a_path+a_file[i])
-        all_train_file_label.append(0)
-    for i in range(0, len(b_file)):
-        all_train_file_name.append(b_path+b_file[i])
-        all_train_file_label.append(1)
-    for i in range(0, len(c_file)):
-        all_train_file_name.append(c_path+c_file[i])
-        all_train_file_label.append(2)
-
-
-    aa_path = '/home/dsh/Data/NPC/test/0/'
-    bb_path = '/home/dsh/Data/NPC/test/1/'
-    cc_path = '/home/dsh/Data/NPC/test/2/'
-    aa_file = os.listdir(aa_path)
-    bb_file = os.listdir(bb_path)
-    cc_file = os.listdir(cc_path)
-
-
-    for i in range(0, len(aa_file)//4*3):
-        all_test_file_name.append(aa_path+aa_file[i])
-        all_test_file_label.append(0)
-    for i in range(0, len(bb_file)//4*3):
-        all_test_file_name.append(bb_path+bb_file[i])
-        all_test_file_label.append(1)
-    for i in range(0, len(cc_file)//4*3):
-        all_test_file_name.append(cc_path+cc_file[i])
-        all_test_file_label.append(2)
+    ##get the train data, train label, validation data, validation label
 
     return all_train_file_name,all_train_file_label,all_test_file_name,all_test_file_label
 
@@ -89,7 +52,6 @@ def print_matrix(output, target):
 
 
 for i in range(1):
-    numnum = str( i + 2 )
     
     BATCH_SIZE = 64
 
@@ -112,8 +74,6 @@ for i in range(1):
     inception_v3.AuxLogits.fc = nn.Linear(inception_v3.AuxLogits.fc.in_features, 3)
     inception_v3.fc = nn.Linear(2048, 3)
 
-    #densenet121 = models.densenet121(pretrained=True)
-    #densenet121.classifier = nn.Linear(densenet121.classifier.in_features, 3)
     resnet = models.inception_v3(pretrained=False, num_classes=3)
     resnet.aux_logits = False
     pre_dict = inception_v3.state_dict()
@@ -139,7 +99,7 @@ for i in range(1):
 
 
     # Training
-    EPOCH = 30
+    EPOCH = 100
     losses = 1000
     for epoch in range(EPOCH):
         for i, (images, labels) in enumerate(TrainImgLoader):
