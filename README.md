@@ -19,7 +19,7 @@ If you find this code is useful for your research, please consider citing:
 @article{
 title={Computer Aided Pathological Diagnosis of Nasopharyngeal Carcinoma Based on  Deep Learning}，
 author={Songhui Diao, Jiaxin Hou, Hong Yu, Xia Zhao, Yikang Sun, Ricardo Lewis Lambo, Yaoqin Xie, Lei Liu, Weiren Luo, Wenjian Qin}，
-journal={unknown}，
+journal={The American Journal of Pathology}，
 year={2020},
 }
 ```
